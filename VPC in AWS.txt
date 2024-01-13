@@ -1,0 +1,106 @@
+============CREATE TWO SUBNET IN AWS ==============
+
+CREATE VPC
+	:search and go VPC
+	:click your VPCs in left side	
+	:click create vpc
+	:write vpc name
+	:Ipv4 CIDR(write ip and therir subnet)
+	:click create VPC
+
+CREATE SUBNET
+	:click subnet in left side
+	:click create subnet1
+	:VPC ID(choose vpc which u crated)
+	:write name of subnet
+	:choose your availability zone
+	:IPv4 CIDR block(write IP and their subnet)
+	:click 'add new subnet'
+	:write name of subnet2
+	:choose your availability zone
+	:IPv4 CIDR block(write IP and their subnet)
+
+
+INTERNET GETWAY
+	:click internet getway form left side
+	:click create internet getway
+	:write getway name	
+	:click create internet getway
+	:choose your getway which u created
+	:click 'action'-attach to VPC
+	:select your vpc
+	:click 'attach intenet getway'
+
+ROUTE TABLE CONFIGURATION
+	:if we create subnet then route table table automatically create
+	:click your route table which you created
+	:slide down and click routes
+	:click edit routes
+	:click add routes
+	:destination(0.0.0.0/0)
+	:target(choose:internet getway)
+	:click save changes
+
+	SUBNET ASSOCIATION
+	:click'Edit subnet associations'
+	:mark both subnet
+	:click 'save association'
+
+CREATE INSTANCE
+	:go to EC2
+	:click instance
+	:click 'launch instance'
+	:write name
+	:select key(if u don't have key then first create)
+	NETWORK SETTING
+	:select your VPC
+	:select your 1st subnet
+	:auto assign public ip(disable to enable)
+	:click'add sicurity group rule'
+	:type(choose-HTTP)
+	:source type(choose-anywhere)
+	:click on 'launch instance'
+
+CREATE SECOND INSTANCE
+	:go to EC2
+	:click instance
+	:click 'launch instance'
+	:write name
+	:select key(if u don't have key then first create)
+	NETWORK SETTING
+	:select your VPC
+	:select your 2nd subnet
+	:auto assign public ip(disable to enable)
+	:click'add sicurity group rule'
+	:type(choose-HTTP)
+	:source type(choose-anywhere)
+	:click on 'launch instance'
+
+FOR PING BOTH NETWORK TO EACH OTHER
+	:select your instance 
+	:click action>sicurity>change sicurity groups
+	:associated sicurity group(choose your sicurity group)
+	:click save
+this process do for all instances for ping
+
+
+FOR CONNECT THE TERMINAL
+	:select your instance
+	:click connect
+	
+	SSH CLIENT
+	:copy the example link
+
+GO ON THE TERMINAL
+	:go your download path 
+	:give execute permission to key pair
+	:then paste here the link which u copied
+	:click enter
+	:press 'yes'
+NOW YOU SUCCESSFULLY LOGIN ON TERMINAL PAGE
+
+
+
+Q] Create a VPC 192.168.0.0/16 and using this vpc create subnet 192.168.0.0/16 and attach to EC2 instance.Start the EC2 instance and install install tomcat inside it.create your own webpage (message: name and prn no) and host it with help of tomcat serverusing default port 80.
+Q] Create a VPC of network 10.10.0.0/16 then create subnet of 10.10.1.0/24 and create subnet2 of 10.10.2.0/24 attach this vpc and subnet to ec2 instance then access both instance and show ip.
+
